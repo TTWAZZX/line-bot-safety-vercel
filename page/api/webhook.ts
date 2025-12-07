@@ -5,13 +5,11 @@ import * as admin from 'firebase-admin';
 
 // *** 1. การเชื่อมต่อ Firebase Admin SDK (ใช้ Environment Variables บน Vercel) ***
 if (!admin.apps.length) {
-    // โหลด Credential จาก Vercel Environment Variables
     admin.initializeApp({
-        // ค่าเหล่านี้จะถูกดึงมาจาก Vercel Env Vars ในขั้นตอนที่ 5.4
         credential: admin.credential.cert({
-            projectId: process.env.FIREBASE_PROJECT_ID,
-            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-            privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+            projectId: process.env.FIREBASE_PROJECT_ID!,     // <--- เพิ่ม !
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL!, // <--- เพิ่ม !
+            privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'), // <--- เพิ่ม !
         })
     });
 }
