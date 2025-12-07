@@ -7,10 +7,10 @@ import * as admin from 'firebase-admin';
 if (!admin.apps.length) {
     admin.initializeApp({
         credential: admin.credential.cert({
-            // แก้ไข 3 บรรทัดนี้โดยการเพิ่มเครื่องหมายตกใจ '!'
+            // ต้องมีเครื่องหมาย ! ครบทั้ง 3 ตัว
             projectId: process.env.FIREBASE_PROJECT_ID!,     
             clientEmail: process.env.FIREBASE_CLIENT_EMAIL!, 
-            privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'), 
+            privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'), // <--- ตรงนี้ต้องมี !
         })
     });
 }
